@@ -38,7 +38,7 @@ let fullData = [];           // global cache
       return;
     }
 
-    const res = await fetch("http://127.0.0.1:5000/history", {
+    const res = await fetch("https://smart-typing-tutor.onrender.com/history", {
       headers: { Authorization: "Bearer " + token }
     });
     

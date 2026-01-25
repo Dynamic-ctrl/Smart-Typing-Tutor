@@ -229,7 +229,7 @@ class SimpleTypingApp {
             target_text: this.currentText
         };
 
-        fetch("http://127.0.0.1:5000/analyze", {
+        fetch("https://smart-typing-tutor.onrender.com/analyze", {
             method: "POST",
             headers: { "Content-Type":"application/json" },
             body: JSON.stringify(payload)
@@ -351,7 +351,7 @@ function saveSessionToBackend(payload) {
   const token = localStorage.getItem("quickeys_token");
   if (!token) return; 
 
-  fetch("http://127.0.0.1:5000/session", {
+  fetch("https://smart-typing-tutor.onrender.com/session", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
