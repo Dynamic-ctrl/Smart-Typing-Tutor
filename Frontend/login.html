@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | Quickeys</title>
+  <link rel="stylesheet" href="loginstyle.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-card">
+      <h1 class="login-title">Welcome to Quickeys</h1>
+      <p class="login-subtitle" id="formSubtitle">Login to continue your typing journey.</p>
+
+      <form id="loginForm">
+        <label for="username">Username</label>
+        <input type="text" id="username" required placeholder="Enter username" />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" required placeholder="Enter password" />
+
+        <button type="submit" class="login-btn" id="submitBtn">Login</button>
+      </form>
+
+      <p class="toggle-text">
+        <span id="toggleQuestion">New user?</span>
+        <a href="#" id="toggleLink">Register here</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const isRegisterMode = location.search.includes("register");
+    const title = document.querySelector(".login-title");
+    const subtitle = document.getElementById("formSubtitle");
+    const btn = document.getElementById("submitBtn");
+    const toggleText = document.getElementById("toggleQuestion");
+    const toggleLink = document.getElementById("toggleLink");
+
+    if (isRegisterMode) {
+      title.textContent = "Join Quickeys";
+      subtitle.textContent = "Create an account to track your progress.";
+      btn.textContent = "Register";
+      toggleText.textContent = "Already have an account?";
+      toggleLink.textContent = "Login here";
+      toggleLink.href = "login.html";
+    } else {
+      toggleLink.href = "login.html?register";
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      if (!username || !password) {
+        return alert("Please fill in both fields.");
+      }
+
+      const endpoint = isRegisterMode ? "/auth/register" : "/auth/login";
+
+      try {
+        const res = await fetch(`http://127.0.0.1:5000${endpoint}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          if (!isRegisterMode) {
+            localStorage.setItem("quickeys_token", data.token);
+            localStorage.setItem("quickeys_user", data.username);
+            window.location.href = "index.html";
+          } else {
+            alert("✅ Registered successfully! You can now login.");
+            window.location.href = "login.html";
+          }
+        } else {
+          alert(data.error || "Something went wrong.");
+        }
+      } catch (err) {
+        alert("Server not responding. Try again later.");
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>

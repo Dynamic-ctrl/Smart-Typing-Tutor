@@ -1,0 +1,39 @@
+# ------------------------------------
+# Security (NEVER UPLOAD THESE)
+# ------------------------------------
+.env
+secrets.json
+*.db
+*.sqlite
+*.sqlite3
+
+# ------------------------------------
+# Python / Flask Junk
+# ------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.venv/
+instance/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ------------------------------------
+# OS / Editor Junk (Mac & VS Code)
+# ------------------------------------
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+# ------------------------------------
+# Large/Useless ML Files
+# ------------------------------------
+# You can comment these out if you WANT to upload your training data
+# but usually, we ignore large datasets and training runs.
+Backend/runs/
+Backend/results/
+Backend/typing_feedback_final_model/

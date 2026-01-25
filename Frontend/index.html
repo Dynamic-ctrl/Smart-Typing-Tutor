@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quickeys - Typing Speed Tutor</title>
+
+  <link rel="stylesheet" href="indexstyles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
+  <script src="https://unpkg.com/feather-icons"></script>
+  <style>
+    /* Base Styles */
+    body {
+      font-family: 'Inter', sans-serif; margin: 0; background-color: #f9fafb; color: #1f2937;
+    }
+    .tagline { margin: 0.5rem 0 0; font-size: 1rem; }
+    
+    /* Header Actions */
+    .top-actions { position: absolute; top: 1rem; right: 1rem; display: flex; align-items: center; gap: 10px; }
+    
+    /* Login Button */
+    .btn.login-btn {
+      background-color: white; color: #0ea5e9; border: none; padding: 0.5rem 1rem;
+      font-weight: 600; text-decoration: none; border-radius: 6px; transition: background-color 0.2s ease;
+      cursor: pointer; display: inline-block;
+    }
+    .btn.login-btn:hover { background-color: #e0f2fe; }
+
+    /* Logout / User Badge */
+    #userBadge {
+      display: none; /* Hidden by default */
+      align-items: center; gap: 10px; background: #e0f2fe; padding: 5px 15px; 
+      border-radius: 20px; font-size: 0.9rem; color: #0ea5e9; font-weight: 600;
+    }
+    #logoutBtn {
+      background: none; border: none; cursor: pointer; color: #ef4444; font-weight: bold; font-size: 1.1rem;
+    }
+    #logoutBtn:hover { color: #dc2626; }
+
+    /* Main Content */
+    main { padding: 2rem; }
+    section { margin-bottom: 3rem; }
+    h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+    
+    .feature-card { background-color: #e5f3ff; padding: 1rem; border-radius: 10px; margin-bottom: 1rem; }
+    .steps li { margin-bottom: 0.5rem; }
+    
+    .btn.primary {
+      background-color: #0ea5e9; color: white; padding: 0.75rem 1.5rem;
+      border-radius: 6px; text-decoration: none; font-weight: 600; cursor: pointer; display: inline-block;
+    }
+    .btn.primary:hover { background-color: #0284c7; }
+    
+    .action-btn { cursor: pointer; display: inline-flex; align-items: center; gap: 8px; color: #0ea5e9; text-decoration: none; font-weight: 600; margin-top: 10px; }
+    .cta-note { margin-top: 0.5rem; font-size: 0.9rem; }
+
+    /* Footer */
+    footer { background-color: #f3f4f6; padding: 1rem; text-align: center; font-size: 0.9rem; }
+    footer nav button, footer nav a {
+      background: none; border: none; color: #0ea5e9; cursor: pointer; font: inherit;
+      text-decoration: none; margin: 0 0.5rem; padding: 0;
+    }
+    footer nav button:hover, footer nav a:hover { text-decoration: underline; }
+
+    /* Modals */
+    .modal {
+      display: none; position: fixed; z-index: 1000; left: 0; top: 0;
+      width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5);
+      align-items: center; justify-content: center;
+    }
+    .modal-content {
+      background-color: #fefefe; margin: 15% auto; padding: 20px;
+      border: 1px solid #888; width: 80%; max-width: 500px;
+      border-radius: 8px; position: relative; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .close-modal { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+    .close-modal:hover { color: black; }
+  </style>
+</head>
+<body>
+  <div class="site-wrapper">
+
+    <header>
+      <h1>Quickeys</h1>
+      <p class="tagline">Your AI companion to master typing with speed and accuracy.</p>
+      
+      <div class="top-actions">
+        <a href="login.html" class="btn login-btn" id="loginBtn">Login</a>
+
+        <div id="userBadge">
+          <span>👤 <span id="userName">User</span></span>
+          <button id="logoutBtn" title="Logout">Logout ⎋</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="intro">
+        <h2>Boost Your Typing Skills with AI</h2>
+        <p>
+          Our intelligent typing tutor analyzes your typing patterns to provide personalized exercises 
+          that target your specific weaknesses. Improve your speed and accuracy with our AI-powered system.
+        </p>
+      </section>
+
+      <section class="features">
+        <h2>Features</h2>
+        <div class="feature-card"><h3>AI-Powered Analysis</h3><p>Machine learning detects your patterns.</p></div>
+        <div class="feature-card"><h3>Personalized Exercises</h3><p>Practice tailored to your skill.</p></div>
+        <div class="feature-card"><h3>Progress Tracking</h3><p>Detailed statistics to monitor improvement.</p></div>
+      </section>
+
+      <section class="how-it-works">
+        <h2>How It Works</h2>
+        <ol class="steps">
+          <li>🎯 Take a typing session</li>
+          <li>📊 AI analyzes your speed & accuracy</li>
+          <li>🧠 Get personalized feedback</li>
+          <li>🚀 Repeat and improve daily</li>
+        </ol>
+      </section>
+
+      <section class="actions">
+        <h2>Get Started</h2>
+        <a onclick="checkLogin('test.html')" class="btn primary">Practice Now</a>
+        <p class="cta-note">Real-time feedback awaits!</p>
+        <a onclick="checkLogin('progress.html')" class="action-btn" id="progressBtn">
+          <i data-feather="trending-up"></i> View Progress
+        </a>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Quickeys. All rights reserved.</p>
+      <nav>
+        <button onclick="openModal('privacyModal')">Privacy Policy</button> |
+        <button onclick="openModal('termsModal')">Terms</button> |
+        <a href="mailto:contact@quickeys.ai">Contact</a>
+      </nav>
+    </footer>
+  </div>
+
+  <div id="privacyModal" class="modal"><div class="modal-content"><span class="close-modal" onclick="closeModal('privacyModal')">&times;</span><h2>🔒 Privacy Policy</h2><p>This is a student project. We do not sell data. Stats are stored locally.</p></div></div>
+  <div id="termsModal" class="modal"><div class="modal-content"><span class="close-modal" onclick="closeModal('termsModal')">&times;</span><h2>📜 Terms of Service</h2><p>Practice daily! No bots allowed.</p></div></div>
+
+  <script>
+    feather.replace();
+
+    // 1. Check Login State & Swap Buttons
+    (function() {
+      const token = localStorage.getItem("quickeys_token");
+      const user  = localStorage.getItem("quickeys_user");
+
+      const loginBtn = document.getElementById("loginBtn");
+      const userBadge = document.getElementById("userBadge");
+      const nameEl = document.getElementById("userName");
+
+      if (token && user) {
+        // LOGGED IN: Hide Login, Show Logout
+        if (loginBtn) loginBtn.style.display = "none";
+        if (userBadge) userBadge.style.display = "flex";
+        if (nameEl) nameEl.textContent = user;
+      } else {
+        // GUEST: Show Login, Hide Logout
+        if (loginBtn) loginBtn.style.display = "inline-block";
+        if (userBadge) userBadge.style.display = "none";
+      }
+
+      // Logout Handler
+      document.getElementById("logoutBtn")?.addEventListener("click", () => {
+        localStorage.removeItem("quickeys_token");
+        localStorage.removeItem("quickeys_user");
+        location.reload(); // Refresh page to return to "Login" state
+      });
+    })();
+
+    // 2. Navigation Guard
+    function checkLogin(url) {
+      if (localStorage.getItem("quickeys_token")) {
+        window.location.href = url;
+      } else {
+        alert("Please login first!");
+        window.location.href = "login.html";
+      }
+    }
+
+    // 3. Modals
+    function openModal(id) { document.getElementById(id).style.display = "flex"; }
+    function closeModal(id) { document.getElementById(id).style.display = "none"; }
+    window.onclick = function(e) { if (e.target.classList.contains('modal')) e.target.style.display = "none"; }
+  </script>
+</body>
+</html>

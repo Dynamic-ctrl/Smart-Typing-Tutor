@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>  if (!localStorage.getItem("quickeys_token")) {
+  location.href = "login.html";
+}</script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI-Powered Speed Typing Tutor</title>
+  <link rel="stylesheet" href="teststyles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+  <div class="app-container">
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-content">
+        <a href="index.html" class="app-title logo-link">
+  <i data-feather="zap"></i>
+  Quickeys
+</a>
+        <div id="userBadge" style="display:none">
+        👤 <span id="userName"></span>
+        <button id="logoutBtn" title="Logout">⎋</button>
+    </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <!-- Performance Dashboard -->
+      <section class="performance-dashboard">
+        <div class="performance-card">
+          <div class="metric-icon"><i data-feather="trending-up"></i></div>
+          <div class="metric-content">
+            <span class="metric-value" id="displayWPM">0</span>
+            <span class="metric-label">Words Per Minute</span>
+          </div>
+        </div>
+
+        <div class="performance-card">
+          <div class="metric-icon"><i data-feather="target"></i></div>
+          <div class="metric-content">
+            <span class="metric-value" id="displayAccuracy">100%</span>
+            <span class="metric-label">Accuracy</span>
+          </div>
+        </div>
+
+        <div class="performance-card">
+          <div class="metric-icon"><i data-feather="award"></i></div>
+          <div class="metric-content">
+            <span class="metric-value" id="displayScore">0</span>
+            <span class="metric-label">Score</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Typing Interface -->
+      <section class="typing-interface">
+        <div class="typing-container">
+
+          <div class="difficulty-selection">
+            <label for="difficulty">Difficulty Level:</label>
+            <select id="difficulty">
+              <option value="beginner">Beginner</option>
+              <option value="intermediate" selected>Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+          </div>
+
+          <div class="text-display" id="textDisplay">
+            <div class="text-content" id="textContent">
+              Click "Start Test" to begin typing practice...
+            </div>
+          </div>
+
+          <div class="input-area">
+            <textarea
+              id="typingInput"
+              placeholder="Click Start Test and begin typing here..."
+              disabled
+            ></textarea>
+          </div>
+
+          <div class="controls">
+            <div class="timer-display" id="timerDisplay" style="display: none;">
+              <div class="timer-circle">
+                <div class="timer-text" id="timerText">1:00</div>
+              </div>
+            </div>
+
+            <button class="control-btn start-btn" id="startBtn">
+              <i data-feather="play"></i>
+              Start Test
+            </button>
+            <button class="control-btn reset-btn" id="resetBtn">
+              <i data-feather="refresh-cw"></i>
+              Reset
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Results Section -->
+      <section class="results-section" id="resultsSection" style="display: none;">
+        <div class="results-grid">
+
+          <div class="result-card">
+            <div class="result-icon"><i data-feather="trending-up"></i></div>
+            <div class="result-content">
+              <span class="result-value" id="resultWPM">0</span>
+              <span class="result-label">WPM</span>
+            </div>
+          </div>
+
+          <div class="result-card">
+            <div class="result-icon"><i data-feather="target"></i></div>
+            <div class="result-content">
+              <span class="result-value" id="resultAccuracy">0%</span>
+              <span class="result-label">Accuracy</span>
+            </div>
+          </div>
+
+          <div class="result-card">
+            <div class="result-icon"><i data-feather="x-circle"></i></div>
+            <div class="result-content">
+              <span class="result-value" id="resultErrors">0</span>
+              <span class="result-label">Errors</span>
+            </div>
+          </div>
+
+          <div class="result-card">
+            <div class="result-icon"><i data-feather="award"></i></div>
+            <div class="result-content">
+              <span class="result-value" id="resultLevel">Beginner</span>
+              <span class="result-label">Level</span>
+            </div>
+          </div>
+
+          <div class="result-card">
+            <div class="result-icon"><i data-feather="clock"></i></div>
+            <div class="result-content">
+              <span class="result-value" id="resultTimeTaken">0:00</span>
+              <span class="result-label">Time Taken</span>
+            </div>
+          </div>
+
+          <div class="result-card">
+            <div class="result-icon"><i data-feather="alert-octagon"></i></div>
+            <div class="result-content">
+              <span class="result-value" id="resultRawMistakes">0</span>
+              <span class="result-label">Raw Mistakes</span>
+            </div>
+          </div>
+
+          <div class="result-card">
+            <div class="result-icon"><i data-feather="delete"></i></div>
+            <div class="result-content">
+              <span class="result-value" id="resultBackspaces">0</span>
+              <span class="result-label">Backspaces</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="recommendations" id="recommendations">
+          <h3>AI Recommendations</h3>
+          <div class="recommendation-list" id="recommendationList">
+            <!-- Recommendations will appear here -->
+          </div>
+        </div>
+
+        <div class="results-actions">
+          <button class="action-btn new-test-btn" id="newTestBtn">
+            <i data-feather="plus"></i>
+            New Test
+          </button>
+          <a href="progress.html" class="action-btn progress-btn" id="progressBtn">
+    <i data-feather="trending-up"></i>
+    View Progress
+  </a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+ <!-- ───── Modal – Skill Level ───── -->
+<div id="levelModal" class="modal-overlay" style="display:none;">
+  <div class="modal">
+    <!-- headline picks up gradient text style from .modal h2 in teststyles.css -->
+    <h2 id="levelTitle">Your Typing Level</h2>
+
+    <!-- message text (JS will overwrite the content) -->
+    <p id="levelMessage">🎉 You are a Disco</p>
+
+    <!-- the button both **has the id** and still calls the helper -->
+    <button id="closeLevelModalBtn"
+            class="modal-close"
+            type="button"
+            onclick="closeLevelModal()">
+      Continue
+    </button>
+  </div>
+</div>
+
+
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script src="script.js"></script>
+  <script>
+    feather.replace();
+  
+(function() {
+  // Redirect to login if no token
+  const token = localStorage.getItem("quickeys_token");
+  const user  = localStorage.getItem("quickeys_user");
+
+  if (!token || !user) {
+    location.href = "login.html";
+    return;
+  }
+
+  // Show badge
+  const badge = document.getElementById("userBadge");
+  const nameEl = document.getElementById("userName");
+  if (badge && nameEl) {
+    nameEl.textContent = user;
+    badge.style.display = "inline-flex";
+  }
+
+  // Logout handler
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      localStorage.removeItem("quickeys_token");
+      localStorage.removeItem("quickeys_user");
+      location.href = "login.html";
+    });
+  }
+})();
+  </script>
+</body>
+</html>

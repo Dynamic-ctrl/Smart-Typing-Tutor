@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Progress | Quickeys</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <!-- Base palettes you already have -->
+  <link rel="stylesheet" href="indexstyles.css" />
+  <link rel="stylesheet" href="progressstyle.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Chart.js v4 (map disabled so no 404) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="app-container">
+
+    <!-- ────────── Header ────────── -->
+    <header class="app-header">
+      <div class="header-content">
+        <h1 class="app-title">
+          <i data-feather="bar-chart-2"></i>
+          Quickeys&nbsp;Progress
+        </h1>
+
+        <!-- Logged-in badge -->
+        <span id="userBadge">
+          👋 <span id="userName">Guest</span>
+          <button id="logoutBtn" title="Log out">×</button>
+        </span>
+      </div>
+    </header>
+
+    <!-- ────────── Summary cards (filled by JS) ────────── -->
+    <section class="performance-dashboard" id="summaryCards"></section>
+
+    <!-- ────────── WPM / Accuracy chart ────────── -->
+    <section class="progress-chart-card">
+      <h2 class="section-title">Typing Speed Over Time</h2>
+      <canvas id="wpmChart" style="max-height:420px"></canvas>
+    </section>
+
+    <!-- ────────── History table & actions ────────── -->
+    <section class="history-section">
+      <div class="history-header">
+        <h2 class="section-title">History</h2>
+
+        <div>
+          <select id="filterRange">
+            <option value="all">All time</option>
+            <option value="30">Last&nbsp;30&nbsp;days</option>
+            <option value="7">Last&nbsp;7&nbsp;days</option>
+          </select>
+
+          <button id="csvBtn" class="action-btn">Download CSV</button>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table id="historyTable">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>WPM</th>
+              <th>Accuracy&nbsp;%</th>
+              <th>Level</th>
+              <th>Errors</th>
+            </tr>
+          </thead>
+          <tbody><!-- rows injected by progress.js --></tbody>
+        </table>
+      </div>
+    </section>
+<!-- ───── back-to-practice button ───── -->
+<section class="back-section">
+  <a href="test.html" class="action-btn back-btn">
+    <i data-feather="arrow-left"></i>
+    Back&nbsp;to&nbsp;Practice
+  </a>
+</section>
+  </div>
+
+  <!-- Feather icons + progress logic -->
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script src="progress.js"></script>
+  <script>feather.replace();</script>
+</body>
+</html>
