@@ -29,8 +29,8 @@ This project uses a unique two-stage AI system:
 
 ## Team Roles
 
-- **Nandana** – UI/UX Design and Frontend Development  
-- **Aditi** – Backend Development and AI/ML Implementation
+- **Nandana v.** – UI/UX Design and Frontend Development  
+- **Aditi Mehta** – Backend Development and AI/ML Implementation
 
 ## How to Run Locally
 
