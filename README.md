@@ -27,13 +27,16 @@ This project uses a unique two-stage AI system:
 - **Database:** SQLite
 - **Security:** JWT (JSON Web Tokens), Bcrypt, Dotenv
 
+## 👥 Team Roles
+
+- **Nandana** – UI/UX Design and Frontend Development  
+- **Aditi** – Backend Development and AI/ML Implementation
+
 ## How to Run Locally
 
 ### 1. Clone the Repo
 ```bash
 git clone [https://github.com/Dynamic-ctrl/Smart-Typing-Tutor.git](https://github.com/Dynamic-ctrl/Smart-Typing-Tutor.git)
 cd Smart-Typing-Tutor
-##  Project Contributors & Roles
 
-- **Nandana** – UI/UX Design and Frontend Development  
-- **Aditi** – Backend Development and AI/ML Implementation
+
