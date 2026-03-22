@@ -27,7 +27,7 @@ This project uses a unique two-stage AI system:
 - **Database:** SQLite
 - **Security:** JWT (JSON Web Tokens), Bcrypt, Dotenv
 
-## 👥 Team Roles
+## Team Roles
 
 - **Nandana** – UI/UX Design and Frontend Development  
 - **Aditi** – Backend Development and AI/ML Implementation
