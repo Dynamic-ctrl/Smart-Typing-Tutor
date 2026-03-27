@@ -28,7 +28,7 @@ This project uses a unique two-stage AI system:
 - **Security:** JWT (JSON Web Tokens), Bcrypt, Dotenv
 
 ## Team Roles
-- **Aditi Mehta** – Backend Development and AI/ML Implementation
+- **Aditi Mehta** – FullStack Development and AI/ML Implementation
 - **Nandana v.** – UI/UX Design and Frontend Development  
 
 ## How to Run Locally
